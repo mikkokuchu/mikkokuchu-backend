@@ -90,11 +90,6 @@ export class AppController {
           break;
       }
     }
-
-    // console.log(b.events[0]);
-    //if(!this.appService.getUser())
-
-    // this.replyMessage(b.events[0].replyToken, b.events[0].message.text);
     return 'ok';
   }
 }

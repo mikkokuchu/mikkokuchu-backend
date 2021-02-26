@@ -113,17 +113,13 @@ export class AppService {
         },
       ],
     };
-
-    const responce = await axios.post(
-      'https://api.line.me/v2/bot/message/reply',
-      replydata,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${lineToken}`,
-        },
+    // よくない
+    await axios.post('https://api.line.me/v2/bot/message/reply', replydata, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${lineToken}`,
       },
-    );
+    });
   }
 
   async sendMessage(to: string, message: string) {
@@ -136,16 +132,12 @@ export class AppService {
         },
       ],
     };
-
-    const responce = await axios.post(
-      'https://api.line.me/v2/bot/message/push',
-      sendBody,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${lineToken}`,
-        },
+    // よくない
+    await axios.post('https://api.line.me/v2/bot/message/push', sendBody, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${lineToken}`,
       },
-    );
+    });
   }
 }
