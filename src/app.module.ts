@@ -19,7 +19,7 @@ import { AdminModule } from './admin/admin.module';
       entities: [User, MikkokuTransaction, Notification, Game, Mission],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([MikkokuTransaction, User]),
+    TypeOrmModule.forFeature([MikkokuTransaction, User, Mission]),
     NotificationModule,
     GameModule,
     AdminModule,
