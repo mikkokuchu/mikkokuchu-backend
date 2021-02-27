@@ -47,3 +47,16 @@ export class User {
   @OneToMany((type) => MikkokuTransaction, (object) => object.sender)
   mikkokus: MikkokuTransaction[];
 }
+
+export interface IUser {
+  id?: number;
+  userStatus: 'pending' | 'authed';
+  lineId: string;
+  userName: string;
+  pendingCommand: '' | 'mikkoku' | 'mission';
+  lifeCount: number;
+  testAccount: boolean;
+  code: string;
+  joinTime: number;
+  mikkokus?: MikkokuTransaction[];
+}
