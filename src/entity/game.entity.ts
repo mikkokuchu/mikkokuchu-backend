@@ -25,3 +25,11 @@ export class Game {
   @OneToMany((type) => Mission, (object) => object.game)
   missions: Mission[];
 }
+
+export interface IGame {
+  id?: number;
+  title: string;
+  startTime: number;
+  endTime: number;
+  missions?: Mission[];
+}
