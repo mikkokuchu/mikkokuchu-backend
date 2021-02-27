@@ -20,6 +20,7 @@ export class AppController {
         continue;
       }
       const sendText = event.message.text;
+      // console.log(sendText);
       //　ユーザ　が登録されていないとき
       if (!sendUser) {
         await this.appService.replyMessage(
@@ -58,7 +59,7 @@ export class AppController {
             break;
           case 'ミッション':
             await this.appService.updatePendingCommand(lineId, 'mission');
-            await this.appService.replyMessage(replyToken, 'ミッション未実装');
+            await this.appService.replyMissions(replyToken);
             break;
           case 'ライフ':
             await this.appService.replyMessage(
@@ -93,3 +94,50 @@ export class AppController {
     return 'ok';
   }
 }
+
+const testJson = {
+  type: 'bubble',
+  body: {
+    type: 'box',
+    layout: 'vertical',
+    contents: [
+      {
+        type: 'text',
+        weight: 'bold',
+        size: 'xl',
+        text: 'ミッション①',
+      },
+      {
+        type: 'text',
+        text: 'test text',
+        wrap: true,
+      },
+      {
+        type: 'text',
+        text: 'test penalty text',
+      },
+    ],
+  },
+  footer: {
+    type: 'box',
+    layout: 'vertical',
+    spacing: 'sm',
+    contents: [
+      {
+        type: 'button',
+        style: 'link',
+        height: 'sm',
+        action: {
+          type: 'message',
+          label: 'このクエストを回答する',
+          text: '>qtest',
+        },
+      },
+      {
+        type: 'spacer',
+        size: 'sm',
+      },
+    ],
+    flex: 0,
+  },
+};
