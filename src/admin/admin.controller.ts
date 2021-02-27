@@ -19,4 +19,9 @@ export class AdminController {
   getMissions(): Promise<Mission[]> {
     return this.adminService.getMissions();
   }
+  @Post('/mission/:id')
+  setMission(@Body() b, @Param() params): Promise<any> {
+    // console.log(b);
+    return this.adminService.updateMission(params.id, b);
+  }
 }

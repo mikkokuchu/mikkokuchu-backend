@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Game } from '../entity/game.entity';
 import { Repository } from 'typeorm';
 import { IUser, User } from '../entity/user.entity';
-import { Mission } from '../entity/mission.entity';
+import { IMission, Mission } from '../entity/mission.entity';
 
 @Injectable()
 export class AdminService {
@@ -24,5 +24,9 @@ export class AdminService {
 
   getMissions(): Promise<Mission[]> {
     return this.missionRepository.find();
+  }
+
+  updateMission(id: number, mission: IMission) {
+    return this.missionRepository.update({ id }, mission);
   }
 }
