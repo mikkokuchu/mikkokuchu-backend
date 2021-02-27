@@ -16,6 +16,12 @@ export class Mission {
   @Column({ default: '' })
   title: string;
 
+  @Column({ default: '' })
+  description: string;
+
+  @Column({ default: '' })
+  penaltyText: string;
+
   @Column()
   startTime: number;
 
@@ -27,4 +33,13 @@ export class Mission {
 
   @ManyToOne((type) => Game, (object) => object.missions)
   game: Game;
+}
+
+export interface IMission {
+  id?: number;
+  title: string;
+  startTime: number;
+  endTime: number;
+  missionType: 'QR' | 'answer' | 'image';
+  game?: Game;
 }
