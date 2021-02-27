@@ -16,6 +16,15 @@ export class Mission {
   @Column({ default: '' })
   title: string;
 
+  @Column()
+  startTime: number;
+
+  @Column()
+  endTime: number;
+
+  @Column({ default: 'QR' })
+  missionType: 'QR' | 'answer' | 'image';
+
   @ManyToOne((type) => Game, (object) => object.missions)
   game: Game;
 }
