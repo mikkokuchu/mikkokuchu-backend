@@ -9,6 +9,7 @@ import { Notification } from './entity/notification.entity';
 import { GameModule } from './game/game.module';
 import { Mission } from './entity/mission.entity';
 import { Game } from './entity/game.entity';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { Game } from './entity/game.entity';
     TypeOrmModule.forFeature([MikkokuTransaction, User]),
     NotificationModule,
     GameModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],
