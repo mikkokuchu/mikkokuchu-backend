@@ -3,9 +3,11 @@ import {
   Entity,
   Index,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Game } from './game.entity';
+import { MissionTransaction } from './missionTransaction.entity';
 
 @Entity()
 export class Mission {
@@ -27,6 +29,9 @@ export class Mission {
 
   @Column()
   endTime: number;
+
+  @OneToMany((type) => MissionTransaction, (object) => object.mission)
+  transactions: MissionTransaction[];
 
   @Column({ default: 'QR' })
   missionType: 'QR' | 'answer' | 'image';

@@ -19,6 +19,7 @@ export class AppController {
       if (event.message.type === 'sticker') {
         continue;
       }
+
       const sendText = event.message.text;
       // console.log(sendText);
       //　ユーザ　が登録されていないとき
@@ -32,7 +33,7 @@ export class AppController {
       }
       // pendingユーザの処理
       if (sendUser.userStatus == 'pending' && event.message.type === 'text') {
-        if (sendText.startsWith('>')) {
+        if (sendText && sendText.startsWith('>')) {
           await this.appService.replyMessage(
             replyToken,
             'ユーザが登録されていません。\nメッセージで全体に公開される名前を打ってください。\n同時に次回のイベントの参加登録もされます。',
@@ -47,7 +48,7 @@ export class AppController {
         continue;
       }
       // コマンドの処理
-      if (sendText.startsWith('>')) {
+      if (sendText && sendText.startsWith('>')) {
         const command = sendText.slice(1).trim();
         switch (command) {
           case '密告':
@@ -86,6 +87,7 @@ export class AppController {
           }
           break;
         case 'mission':
+          await this.appService.missionflow(replyToken, event, sendUser);
           break;
         case '':
           break;

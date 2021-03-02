@@ -10,19 +10,37 @@ import { GameModule } from './game/game.module';
 import { Mission } from './entity/mission.entity';
 import { Game } from './entity/game.entity';
 import { AdminModule } from './admin/admin.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { MissionTransaction } from './entity/missionTransaction.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db/sqlite.db',
-      entities: [User, MikkokuTransaction, Notification, Game, Mission],
+      entities: [
+        User,
+        MikkokuTransaction,
+        Notification,
+        Game,
+        Mission,
+        MissionTransaction,
+      ],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([MikkokuTransaction, User, Mission]),
+    TypeOrmModule.forFeature([
+      MikkokuTransaction,
+      User,
+      Mission,
+      MissionTransaction,
+    ]),
     NotificationModule,
     GameModule,
     AdminModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
