@@ -13,6 +13,9 @@ export class AdminController {
   }
   @Post('/user/:id')
   setAdminUsers(@Body() b, @Param() params): Promise<any> {
+    const tmp = JSON.parse(JSON.stringify(b));
+    delete b.mikkokus;
+    delete b.missionTransactions;
     return this.adminService.updateAdminUser(params.id, b);
   }
 

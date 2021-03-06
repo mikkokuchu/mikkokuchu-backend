@@ -53,7 +53,7 @@ export class User {
   mikkokus: MikkokuTransaction[];
 
   @OneToMany((type) => MissionTransaction, (object) => object.sender)
-  missionTransactions: MikkokuTransaction[];
+  missionTransactions: MissionTransaction[];
 }
 
 export interface IUser {

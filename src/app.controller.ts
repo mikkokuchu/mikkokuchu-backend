@@ -5,6 +5,8 @@ import { emitKeypressEvents } from 'readline';
 
 @Controller()
 export class AppController {
+  openGame = false;
+
   constructor(private readonly appService: AppService) {}
 
   @Post('/bot/webhook')
@@ -15,6 +17,11 @@ export class AppController {
       const lineId = event.source.userId;
       const sendUser = await this.appService.getUser(lineId);
       const replyToken = event.replyToken;
+      console.log(event);
+      if (event.type === 'follow') {
+        await this.appService.addUser(lineId);
+        continue;
+      }
       //　スタンプが送られたとき
       if (event.message.type === 'sticker') {
         continue;
@@ -44,6 +51,20 @@ export class AppController {
         await this.appService.replyMessage(
           replyToken,
           sendText + 'で登録しました。',
+        );
+        continue;
+      }
+      if (new Date().getTime() < 1615089540000) {
+        await this.appService.replyMessage(
+          replyToken,
+          'ゲーム開始までしばらくお待ちください！',
+        );
+        continue;
+      }
+      if (sendUser.lifeCount <= 0) {
+        await this.appService.replyMessage(
+          replyToken,
+          'あなたはライフが０です。クスノキ前本部にきてください。',
         );
         continue;
       }

@@ -23,6 +23,9 @@ export class MissionTransaction {
   @Column()
   status: boolean;
 
+  @Column()
+  pending: boolean;
+
   @Column({ default: '' })
   replyToken: string;
 
